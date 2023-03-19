@@ -10,10 +10,19 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: Maven@3
+  displayName: 'maven package'
+  inputs:
+    options: '-DskipITs --settings ./maven/settings.xml'
+- task : CopyFiles@2
+  inputs:
+    SourceFolder: '$(build.sourcesdirectory)'
+    Contents: |
+      **/target/*.war
+      *.sql
+    TargetFolder: '$(build.artifactstagingdirectory)'
+  
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish  artifacts'
+  inputs:
+    pathtopublish: $(build.artifactstagingdirectory)
