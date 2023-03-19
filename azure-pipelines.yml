@@ -13,7 +13,7 @@ steps:
 - task: Maven@3
   displayName: 'maven package'
   inputs:
-    options: '-DskipITs --settings ./maven/settings.xml'
+    options: '-DskipITs --settings ./maven/pom.xml'
 - task : CopyFiles@2
   inputs:
     SourceFolder: '$(build.sourcesdirectory)'
