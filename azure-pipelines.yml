@@ -14,7 +14,6 @@ steps:
   displayName: 'maven package'
   inputs:
     mavenPomFile: 'pom.xml'
-    options: '-DskipITs --settings ./maven/settings.xml'
 - task : CopyFiles@2
   inputs:
     SourceFolder: '$(build.sourcesdirectory)'
