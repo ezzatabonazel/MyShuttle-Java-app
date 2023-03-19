@@ -13,6 +13,7 @@ steps:
 - task: Maven@3
   displayName: 'maven package'
   inputs:
+    mavenPomFile: 'pom.xml'
     options: '-DskipITs --settings ./maven/settings.xml'
 - task : CopyFiles@2
   inputs:
