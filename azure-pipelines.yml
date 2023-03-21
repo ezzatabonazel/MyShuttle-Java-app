@@ -14,7 +14,9 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    publishJUnitResults: false
+    options: '-DskipITs --settings ./maven/settings.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
