@@ -10,9 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Maven@3
-  displayName: 'maven package'
-  inputs:
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -22,7 +20,6 @@ steps:
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
-    mavenPomFile: 'pom.xml'
 - task : CopyFiles@2
   inputs:
     SourceFolder: '$(build.sourcesdirectory)'
